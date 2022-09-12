@@ -1,0 +1,26 @@
+https://dev.mysql.com/doc/refman/8.0/en/grant.html
+
+# DDL(DATA DEFINITION LANGUAGE) cth CREATE TABLE, ALTER TABLE, DROP TABLE
+# DML(DATA MANIPULATION LANGUAGE) cth INSERT, UPDATE
+### CREATE USER
+CREATE USER 'dev_akbar'@'localhost';
+CREATE USER 'akbar'@'localhost';
+CREATE USER 'sonia'@'%'; # Tidak disarankan karna memberikan semua hak akses
+### SET PASSWORD USER
+SET PASSWORD FOR 'akbar'@'localhost' = 'rahasia';
+SET PASSWORD FOR 'dev_akbar'@'localhost'= 'rahasia';
+## DELETE USER
+DROP USER 'akbar'@'localhost';
+DROP USER 'sonia'@'%';
+
+### ADD/DROP HAK AKSE KE USER
+### GRANT(DML) ON (DATABASE) TO (USER)
+GRANT SELECT ON belajar_mysql.* TO 'akbar'@'localhost';
+GRANT SELECT, INSERT ON belajar_mysql.* TO 'dev_akbar'@'localhost';
+### SHOW GRANT
+# SHOW GRANTS FOR (USER)
+SHOW GRANTS FOR 'akbar'@'localhost';
+SHOW GRANTS FOR 'dev_akbar'@'localhost';
+### REVOKE GRANT
+#REVOKE (DML) ON(DATABASE) FROM(USER)
+REVOKE SELECT, INSERT ON belajar_mysql.* FROM 'akbar'@'localhost';

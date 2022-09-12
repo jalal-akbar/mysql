@@ -1,0 +1,122 @@
+@startuml spotify
+
+entity Artists{
+    * id : VARCHAR
+    --
+    * name : VARCHAR
+    instagram : VARCHAR
+    facebook : VARCHAR
+    twitter : VARCHAR
+    wikipedia : VARCHAR
+    bio : TEXT
+}
+
+entity Albums{
+    * id : VARCHAR
+    --
+    * title : VARCHAR
+    * release : YEAR
+    * cover : VARCHAR
+
+}
+
+entity Songs{
+    * id : VARCHAR
+    --
+    * title : VARCHAR
+    * cover : VARCHAR
+    * albums_id : VARCHAR
+    * durations : TIME 
+}
+
+entity PlaylistCategories{
+    * id : VARCHAR
+    --
+    * name : VARCHAR
+    * cover : VARCHAR
+    * icon : VARCHAR
+}
+
+entity Playlists{
+    * id : VARCHAR
+    --
+    * name : VARCHAR
+    description : TEXT
+    cover : VARCHAR
+    category_id : VARCHAR 
+    * user_id : VARCHAR
+}
+
+entity PlaylistPodcasts{
+    * id : VARCHAR
+    --
+    * name : VARCHAR
+    * cover : VARCHAR
+    * icon : VARCHAR
+}
+
+entity Podcasts{
+    * id : VARCHAR
+    --
+    * name : VARCHAR
+    about : TEXT
+    cover : VARCHAR
+    category_id : VARCHAR 
+    * user_id : VARCHAR
+}
+
+entity Episodes{
+    * id : VARCHAR
+    --
+    * podcasts_id : VARCHAR
+    * title : VARCHAR
+    description : TEXT
+    * published_at : TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    *duration : INT
+}
+
+entity Concerts{
+    * id : VARCHAR
+    --
+    * location : VARCHAR
+    * event_at : DATETIME
+    * url : VARCHAR
+    lon : DOUBLE
+    lat : DOUBLE
+}
+
+entity Users{
+    * id : VARCHAR
+    --
+    * name : VARCHAR
+    * email : VARCHAR 
+}
+
+Artists}|--|{Albums : Has
+
+Albums||--|{ Songs : Contains
+
+Artists }|--|{Songs : Sings
+
+PlaylistCategories |o--|{Playlists : Contains
+
+Playlists}o--o{Songs : Contains
+
+Users||--o{Playlists : Create
+
+PlaylistPodcasts ||--|{Podcasts : Contains
+
+Users ||--o{Podcasts : Create
+
+Podcasts ||--|{Episodes : Talk
+
+Artists}|--o{Concerts : Perform
+
+Users}o--o{Artists : Follow Artist
+
+Users}o--o{Songs : Like Song
+
+Users}o--|{Playlists : Follow Playlist
+
+
+@enduml

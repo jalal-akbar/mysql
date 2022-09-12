@@ -1,0 +1,3 @@
+./bin/mysqldump
+### BACKUP
+mysqldump belajar_mysql --user root --password --result-file=Users\crist\backup_belajar_mysql.sql;

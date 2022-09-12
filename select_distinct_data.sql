@@ -1,0 +1,2 @@
+### SELECT DISTINCT DATA
+SELECT DISTINCT category FROM products;

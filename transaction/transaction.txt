@@ -1,0 +1,68 @@
+### TRANSACTION
+START TRANSACTION;
+
+UPDATE products
+SET quantity = quantity - 10
+WHERE id = 'P001'
+
+BEFORE COMMIT
++------+----------+
+| id   | quantity |
++------+----------+
+| P001 |      100 |
+| P002 |       30 |
+| P003 |       10 |
+| P004 |        2 |
+| P005 |       30 |
+| P006 |      200 |
+| P007 |       51 |
+| P008 |       70 |
+| P009 |      110 |
+| P010 |     1000 |
+| P011 |      150 |
+| P012 |      101 |
+| P013 |       50 |
+| P014 |      100 |
+| P015 |       70 |
+| P016 |       55 |
+| X001 |        1 |
+| X002 |        2 |
++------+----------+
+
+COMMIT;
+
+AFTER COMMIT
++------+----------+
+| id   | quantity |
++------+----------+
+| P001 |       90 |
+| P002 |       30 |
+| P003 |       10 |
+| P004 |        2 |
+| P005 |       30 |
+| P006 |      200 |
+| P007 |       51 |
+| P008 |       70 |
+| P009 |      110 |
+| P010 |     1000 |
+| P011 |      150 |
+| P012 |      101 |
+| P013 |       50 |
+| P014 |      100 |
+| P015 |       70 |
+| P016 |       55 |
+| X001 |        1 |
+| X002 |        2 |
++------+----------+
+
+### LOCKING TABLE READ/WRITE
+# READ
+LOCK TABLE products READ;
+# WRITE
+LOCK TABLE products WRITE;
+# UNLOCK TABLE
+UNLOCK TABLES;
+
+### LOCKING INSTANCE
+LOCK INSTANCE FOR BACKUP;
+UNLOCK INTANCE;

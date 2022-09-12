@@ -1,0 +1,4 @@
+### RESTORE
+CREATE DATABASE belajar_mysql_lagi;
+USE belajar_mysql_lagi;
+SOURCE C:\Users\crist\backup_belajar_mysql.sql;
